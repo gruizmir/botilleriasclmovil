@@ -4,5 +4,8 @@
     <string name="app_name">Emborrachar.me</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
-
+	<string name="search_hint">Busca cerca de un lugar</string>
+	<string name="has_food">Hay abarrotes</string>
+	<string name="has_coal">Hay carbón</string>
+	<string name="has_ice">Hay hielo</string>
 </resources>
