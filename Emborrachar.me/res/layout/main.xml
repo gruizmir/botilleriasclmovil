@@ -42,74 +42,74 @@
             android:layout_height="match_parent"
             class="com.google.android.gms.maps.SupportMapFragment" />
 
-        <SlidingDrawer
-            android:id="@+id/slidingDrawer1"
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:content="@+id/content"
-            android:handle="@+id/handle"
-            android:orientation="horizontal" >
+<!--         <SlidingDrawer -->
+<!--             android:id="@+id/slidingDrawer1" -->
+<!--             android:layout_width="match_parent" -->
+<!--             android:layout_height="90dp" -->
+<!--             android:layout_alignParentBottom="true" -->
+<!--             android:layout_alignParentRight="true" -->
+<!--             android:content="@+id/content" -->
+<!--             android:handle="@+id/handle" -->
+<!--             android:orientation="horizontal" > -->
 
-            <ImageButton
-                android:id="@+id/handle"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@drawable/more"
-                android:background="@android:color/transparent"
-                android:contentDescription="@string/extend" />
+<!--             <ImageButton -->
+<!--                 android:id="@+id/handle" -->
+<!--                 android:layout_width="wrap_content" -->
+<!--                 android:layout_height="match_parent" -->
+<!--                 android:src="@drawable/more" -->
+<!--                 android:background="@android:color/transparent" -->
+<!--                 android:contentDescription="@string/extend" /> -->
 
-            <LinearLayout
-                android:id="@+id/content"
-                android:layout_width="match_parent"
-                android:layout_height="90dp"
-                android:background="@android:color/white"
-                android:orientation="vertical"
-                android:paddingLeft="5dp"
-                android:paddingTop="5dp" >
+<!--             <LinearLayout -->
+<!--                 android:id="@+id/content" -->
+<!--                 android:layout_width="match_parent" -->
+<!--                 android:layout_height="90dp" -->
+<!--                 android:background="@android:color/white" -->
+<!--                 android:orientation="vertical" -->
+<!--                 android:paddingLeft="5dp" -->
+<!--                 android:paddingTop="5dp" > -->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
+<!--                 <LinearLayout -->
+<!--                     android:layout_width="match_parent" -->
+<!--                     android:layout_height="wrap_content" -->
+<!--                     android:orientation="horizontal" > -->
 
-                    <TextView
-                        android:id="@+id/bot_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/no_selected"
-                        android:textStyle="bold" />
+<!--                     <TextView -->
+<!--                         android:id="@+id/bot_name" -->
+<!--                         android:layout_width="wrap_content" -->
+<!--                         android:layout_height="wrap_content" -->
+<!--                         android:text="@string/no_selected" -->
+<!--                         android:textStyle="bold" /> -->
 
-                    <ImageView
-                        android:id="@+id/bot_food"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/has_food" />
+<!--                     <ImageView -->
+<!--                         android:id="@+id/bot_food" -->
+<!--                         android:layout_width="wrap_content" -->
+<!--                         android:layout_height="wrap_content" -->
+<!--                         android:contentDescription="@string/has_food" /> -->
 
-                    <ImageView
-                        android:id="@+id/bot_coal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/has_coal" />
-                </LinearLayout>
+<!--                     <ImageView -->
+<!--                         android:id="@+id/bot_coal" -->
+<!--                         android:layout_width="wrap_content" -->
+<!--                         android:layout_height="wrap_content" -->
+<!--                         android:contentDescription="@string/has_coal" /> -->
+<!--                 </LinearLayout> -->
 
-                <TextView
-                    android:id="@+id/bot_address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+<!--                 <TextView -->
+<!--                     android:id="@+id/bot_address" -->
+<!--                     android:layout_width="wrap_content" -->
+<!--                     android:layout_height="wrap_content" /> -->
 
-                <TextView
-                    android:id="@+id/bot_horario1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+<!--                 <TextView -->
+<!--                     android:id="@+id/bot_horario1" -->
+<!--                     android:layout_width="wrap_content" -->
+<!--                     android:layout_height="wrap_content" /> -->
 
-                <TextView
-                    android:id="@+id/bot_horario2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-        </SlidingDrawer>
+<!--                 <TextView -->
+<!--                     android:id="@+id/bot_horario2" -->
+<!--                     android:layout_width="wrap_content" -->
+<!--                     android:layout_height="wrap_content" /> -->
+<!--             </LinearLayout> -->
+<!--         </SlidingDrawer> -->
     </RelativeLayout>
 
 </LinearLayout>
