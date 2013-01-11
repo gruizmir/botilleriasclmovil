@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:background="@android:color/white"
         android:weightSum="1.0" >
 
         <EditText
@@ -22,12 +23,15 @@
             <requestFocus />
         </EditText>
 
-        <Button
+        <ImageButton
             android:id="@+id/search_ok"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_weight="0.2"
-            android:text="@string/search" />
+            android:src="@drawable/search"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/search" />
     </LinearLayout>
 
     <RelativeLayout

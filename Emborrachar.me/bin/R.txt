@@ -18,6 +18,8 @@ int drawable food 0x7f020002
 int drawable ic_launcher 0x7f020003
 int drawable ice 0x7f020004
 int drawable more 0x7f020005
+int drawable search 0x7f020006
+int drawable search_shape 0x7f020007
 int id bot_address 0x7f040007
 int id bot_coal 0x7f040006
 int id bot_food 0x7f040005
