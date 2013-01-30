@@ -16,31 +16,34 @@
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" />
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@android:style/Theme.NoTitleBar"> >
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyBp_PxOa6nCja2Dizrwf0e43qoMHb-hYyg" />
 
         <activity
-            android:name="me.emborrachar.Main"
+            android:name=".Main"
             android:label="@string/app_name"
             android:configChanges="orientation"
              >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Splash"
+            android:label="Splash"
+            android:screenOrientation="portrait"
+             />
     </application>
-
 </manifest>

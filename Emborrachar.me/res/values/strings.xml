@@ -2,6 +2,9 @@
 <resources>
 
     <string name="app_name">Emborrachar.me</string>
+    <string name="emborrachar">Emborrachar</string>
+    <string name="dotme">.me</string>
+    <string name="get_botillerias">http://177.71.186.99/api/search?format=json</string>
     <string name="menu_normal">Vista normal</string>
     <string name="menu_satellite">Vista Satellite</string>
 	<string name="search_hint">Busca cerca de un lugar</string>
