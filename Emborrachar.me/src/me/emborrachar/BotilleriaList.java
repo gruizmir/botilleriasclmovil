@@ -44,17 +44,17 @@ public class BotilleriaList {
 				bot.setTime2(jsonObject.getString("horario_desde2") + " a " + jsonObject.getString("horario_hasta2"));
 				bot.setLatitud(Double.parseDouble(jsonObject.getString("latitud")));
 				bot.setLongitud(Double.parseDouble(jsonObject.getString("longitud")));
-				if(jsonObject.getBoolean("hielo"))
+				if(jsonObject.getInt("hielo")==1)
 					bot.setIce(true);
 				else
 					bot.setIce(false);
 
-				if(jsonObject.getBoolean("carbon"))
+				if(jsonObject.getInt("carbon")==1)
 					bot.setCharcoal(true);
 				else
 					bot.setCharcoal(false);
 
-				if(jsonObject.getBoolean("abarrotes"))
+				if(jsonObject.getInt("abarrotes")==1)
 					bot.setFood(true);
 				else
 					bot.setFood(false);

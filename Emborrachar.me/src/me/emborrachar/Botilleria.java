@@ -82,10 +82,12 @@ public class Botilleria {
 	
 	public String getSnippet(){
 		String resp = getAddress() + "\n";
-		if(getTime1()!=null && !getTime1().equals("null"))
+		if(getTime1()!=null && !getTime1().equals("null") && !getTime1().equals("null a null"))
 			resp = resp + "Dom a Jue: " + getTime1() + " hrs";
+		else 
+			resp = resp + "Sin horario disponible";
 		resp = resp + "\n";
-		if(getTime2()!=null && !getTime2().equals("null"))
+		if(getTime2()!=null && !getTime2().equals("null") && !getTime2().equals("null a null"))
 			resp = resp  + "Vie a Sab: " + getTime2() + " hrs";
 		resp = resp + "\n";
 		resp = resp + Boolean.toString(hasFood()) + "\n" + Boolean.toString(hasCharcoal()) + "\n" + Boolean.toString(hasIce());
