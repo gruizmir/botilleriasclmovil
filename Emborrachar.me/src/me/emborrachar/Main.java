@@ -14,6 +14,7 @@ import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,15 +30,13 @@ import cl.skyvortex.connection.HttpConnection;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 @SuppressLint("HandlerLeak")
-public class Main extends android.support.v4.app.FragmentActivity {
+public class Main extends android.support.v4.app.FragmentActivity implements LocationListener {
 	private EditText searchBar;
 	private GoogleMap mapa;
 	private String bestProvider;
@@ -45,6 +44,8 @@ public class Main extends android.support.v4.app.FragmentActivity {
 	private final int BUSQUEDA=0;
 	private LocationManager locationManager;
 	private BotilleriaList mList;
+	private final double DEFAULT_LAT = -33.44462;
+	private final double DEFAULT_LONG = -70.655222;
 	
 	private final Handler mHandler = new Handler() {
 		@Override
@@ -59,13 +60,18 @@ public class Main extends android.support.v4.app.FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Intent i = new Intent(this, Splash.class);
+		startActivity(i);
+		setContentView(R.layout.main);
 		String city="Santiago";
 		locationManager= (LocationManager)getSystemService(Context.LOCATION_SERVICE);
 		try{
 			Criteria criteria = new Criteria();
 			bestProvider = locationManager.getBestProvider(criteria, true);
+			if(bestProvider==null)
+				bestProvider = locationManager.getBestProvider(criteria, false);
 			Location loc = locationManager.getLastKnownLocation(bestProvider);
-			Geocoder geoCoder = new Geocoder(this, Locale.getDefault());
+			Geocoder geoCoder = new Geocoder(this, new Locale("es-CL"));
 			List<Address> addresses = geoCoder.getFromLocation(loc.getLatitude(),  loc.getLongitude(), 1);
 			city = addresses.get(0).getLocality();
 		}catch(IndexOutOfBoundsException e){
@@ -74,50 +80,60 @@ public class Main extends android.support.v4.app.FragmentActivity {
 			e.printStackTrace();
 		}catch(NullPointerException e){
 			e.printStackTrace();
+		}catch(Exception e){
 		}
 		getBotillerias(city, true);
-		Intent i = new Intent(this, Splash.class);
-		startActivity(i);
-		setContentView(R.layout.main);
+		mapa = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
+		mapa.getUiSettings().setZoomControlsEnabled(false);
 		searchBar = (EditText) findViewById(R.id.search_bar);
 	}
 
 	private void displayInitialData(String apiResponse){
 		mList = new BotilleriaList();
 		mList.parseList(apiResponse);
-		mapa = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
-		mapa.getUiSettings().setZoomControlsEnabled(false);
-		mapa.setOnMarkerClickListener(new OnMarkerClickListener() {
-			public boolean onMarkerClick(Marker marker) {
-				return false;
-			}
-		});
 		locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+		mapa.setInfoWindowAdapter(new BorrachoAdapter(this));
 		try{
 			Criteria criteria = new Criteria();
 			bestProvider = locationManager.getBestProvider(criteria, true);
+			if(bestProvider==null)
+				bestProvider = locationManager.getBestProvider(criteria, false);
 			Location loc = locationManager.getLastKnownLocation(bestProvider);
-			CameraUpdate cam = CameraUpdateFactory.newLatLngZoom(new LatLng(loc.getLatitude(),loc.getLongitude()), (float)15.0);
 			mapa.addMarker(new MarkerOptions()
 			.position(new LatLng(loc.getLatitude(),loc.getLongitude()))
 			.title("Tú estás aquí")
 			.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+			CameraUpdate cam = CameraUpdateFactory.newLatLngZoom(new LatLng(loc.getLatitude(),loc.getLongitude()), (float)15.0);
 			mapa.moveCamera(cam);
 		}catch(NullPointerException e){
-			Log.e("gps", "problema");
+			mapa.addMarker(new MarkerOptions()
+			.position(new LatLng(DEFAULT_LAT,DEFAULT_LONG))
+			.title("Santiago de Chile")
+			.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+			CameraUpdate cam = CameraUpdateFactory.newLatLngZoom(new LatLng(DEFAULT_LAT,DEFAULT_LONG), (float)15.0);
+			mapa.moveCamera(cam);
+		}catch(Exception e){
+			
 		}
-		mapa.setInfoWindowAdapter(new BorrachoAdapter(this));
 		showStores();
 	}
 
 	protected void onResume(){
 		super.onResume();
 	}
-
 	
 	private void displaySearchData(String apiResponse){
 		mList = new BotilleriaList();
 		mList.parseList(apiResponse);
+		if(mList.count()!=0){
+			try{
+				CameraUpdate cam = CameraUpdateFactory.newLatLngZoom(new LatLng(mList.get(0).getLatitud(),mList.get(0).getLongitud()), (float)15.0);
+				mapa.moveCamera(cam);
+			}catch(NullPointerException e){
+				CameraUpdate cam = CameraUpdateFactory.newLatLngZoom(new LatLng(DEFAULT_LAT,DEFAULT_LONG), (float)15.0);
+				mapa.moveCamera(cam);
+			}
+		}
 		showStores();
 	}
 	
@@ -129,7 +145,7 @@ public class Main extends android.support.v4.app.FragmentActivity {
 				.position(new LatLng(b.getLatitud(),b.getLongitud()))
 				.title(b.getName())
 				.snippet(b.getSnippet())
-						.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+				.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
 			}catch(NullPointerException e){
 				continue;
 			}
@@ -177,26 +193,16 @@ public class Main extends android.support.v4.app.FragmentActivity {
 		case R.id.menu_satellite:
 			mapa.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 			break;
+		case R.id.menu_help:
+			Intent i = new Intent(this, Help.class);
+			startActivity(i);
+			break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
 	
 	public void search(View v){
 		String busqueda = searchBar.getText().toString();
-		locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-		try{
-			Criteria criteria = new Criteria();
-			bestProvider = locationManager.getBestProvider(criteria, true);
-			Geocoder geoCoder = new Geocoder(this, Locale.getDefault());
-			List<Address> addresses = geoCoder.getFromLocationName(busqueda, 1);
-			Address ad = addresses.get(0);
-			CameraUpdate cam = CameraUpdateFactory.newLatLngZoom(new LatLng(ad.getLatitude(),ad.getLongitude()), (float)15.0);
-			mapa.moveCamera(cam);
-		}catch(NullPointerException e){
-			Log.e("gps", "problema");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		if(busqueda!=null && !busqueda.equals(""))
 			getBotillerias(busqueda, false);
 	}
@@ -210,5 +216,27 @@ public class Main extends android.support.v4.app.FragmentActivity {
 	    }
 	    output = output.trim();
 	    return output;
+	}
+
+	@Override
+	public void onLocationChanged(Location arg0) {
+		Log.d("location", "cambio");
+	}
+	@Override
+	public void onProviderDisabled(String arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onProviderEnabled(String arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -138,29 +138,33 @@ containing a value of this type.
         public static final int search_shape=0x7f020007;
     }
     public static final class id {
-        public static final int bot_address=0x7f060007;
+        public static final int bot_address=0x7f060008;
         public static final int bot_coal=0x7f060006;
         public static final int bot_food=0x7f060005;
-        public static final int bot_horario1=0x7f060008;
-        public static final int bot_horario2=0x7f060009;
+        public static final int bot_horario1=0x7f060009;
+        public static final int bot_horario2=0x7f06000a;
+        public static final int bot_ice=0x7f060007;
         public static final int bot_name=0x7f060004;
-        public static final int imageView1=0x7f06000d;
-        public static final int map=0x7f06000c;
-        public static final int menu_normal=0x7f060010;
-        public static final int menu_satellite=0x7f060011;
+        public static final int help_url=0x7f06000b;
+        public static final int imageView1=0x7f06000f;
+        public static final int map=0x7f06000e;
+        public static final int menu_help=0x7f060014;
+        public static final int menu_normal=0x7f060012;
+        public static final int menu_satellite=0x7f060013;
         public static final int none=0x7f060000;
         public static final int normal=0x7f060001;
         public static final int satellite=0x7f060002;
-        public static final int search_bar=0x7f06000a;
-        public static final int search_ok=0x7f06000b;
+        public static final int search_bar=0x7f06000c;
+        public static final int search_ok=0x7f06000d;
         public static final int terrain=0x7f060003;
-        public static final int text_dot=0x7f06000f;
-        public static final int text_emb=0x7f06000e;
+        public static final int text_dot=0x7f060011;
+        public static final int text_emb=0x7f060010;
     }
     public static final class layout {
         public static final int balloon=0x7f030000;
-        public static final int main=0x7f030001;
-        public static final int splash=0x7f030002;
+        public static final int help=0x7f030001;
+        public static final int main=0x7f030002;
+        public static final int splash=0x7f030003;
     }
     public static final class menu {
         public static final int main=0x7f070000;
@@ -212,16 +216,20 @@ containing a value of this type.
         public static final int common_google_play_services_update_title=0x7f040008;
         public static final int dotme=0x7f04000d;
         public static final int emborrachar=0x7f04000c;
-        public static final int extend=0x7f040017;
         public static final int get_botillerias=0x7f04000e;
-        public static final int has_coal=0x7f040013;
-        public static final int has_food=0x7f040012;
-        public static final int has_ice=0x7f040014;
+        public static final int has_coal=0x7f040014;
+        public static final int has_food=0x7f040013;
+        public static final int has_ice=0x7f040015;
+        public static final int help=0x7f040018;
+        public static final int menu_help=0x7f040011;
         public static final int menu_normal=0x7f04000f;
         public static final int menu_satellite=0x7f040010;
-        public static final int no_selected=0x7f040015;
-        public static final int search=0x7f040016;
-        public static final int search_hint=0x7f040011;
+        public static final int no_selected=0x7f040016;
+        public static final int not_found=0x7f04001a;
+        public static final int search=0x7f040017;
+        public static final int search_hint=0x7f040012;
+        public static final int symbols=0x7f040019;
+        public static final int url=0x7f04001b;
     }
     public static final class style {
         /** 

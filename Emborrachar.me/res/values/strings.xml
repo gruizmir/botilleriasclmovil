@@ -7,11 +7,15 @@
     <string name="get_botillerias">http://177.71.186.99/api/search?format=json</string>
     <string name="menu_normal">Vista normal</string>
     <string name="menu_satellite">Vista Satellite</string>
+    <string name="menu_help">Ayuda</string>
 	<string name="search_hint">Busca cerca de un lugar</string>
 	<string name="has_food">Hay abarrotes</string>
 	<string name="has_coal">Hay carbón</string>
 	<string name="has_ice">Hay hielo</string>
 	<string name="no_selected">No has seleccionado nada</string>
 	<string name="search">Buscar</string>
-	<string name="extend">Extender</string>
+	<string name="help">Ayuda</string>
+	<string name="symbols">Simbología</string>
+	<string name="not_found">¿Conoces una botillería que no está en el mapa? Regístrala gratis en</string>
+	<string name="url">http://emborrachar.me/registro_botilleria/</string>
 </resources>
